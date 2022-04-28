@@ -56,16 +56,16 @@ def main():
         detected_utility_functions = []
         for (function_name, constructor, destructor) in test_cases:
             for utility_func in [constructor, destructor]:
-                if utility_func is not '' and utility_func != "NULL" and utility_func not in detected_utility_functions:
+                if utility_func != '' and utility_func != "NULL" and utility_func not in detected_utility_functions:
                     c_header_string += ("DECLARE_FUNCTION({});\n".format(utility_func))
                     detected_utility_functions.append(utility_func)
             c_header_string += ("DECLARE_FUNCTION({});\n".format(function_name))
 
         c_header_string += "\n{}".format(TEST_PLAN_ARRAY_PROLOGUE)
         for function_name, constructor, destructor in test_cases:
-            if constructor is '':
+            if constructor == '':
                 constructor = "NULL"
-            if destructor is '':
+            if destructor == '':
                 destructor = "NULL"
             c_header_string += ("DECLARE_TEST_CASE({}, {}, {}),\n".format(function_name, constructor, destructor))
         c_header_string += TEST_PLAN_ARRAY_EPILOGUE
