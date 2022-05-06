@@ -49,16 +49,20 @@ void execute_test(TestCase* test_case) {
     printf("Running Test |%4d|  %-64s | ", test_index, test_case->function_name);
     fflush(stdout);
 
-    pthread_t thread_id;
-    pthread_create(&thread_id, NULL, test_wrapper, (void*)test_case);
-    int exit_code = 0;
-    pthread_join(thread_id, (void*)&exit_code);
+    if (test_case->function) {
+        pthread_t thread_id;
+        pthread_create(&thread_id, NULL, test_wrapper, (void*)test_case);
+        int exit_code = 0;
+        pthread_join(thread_id, (void*)&exit_code);
 
-    if (exit_code == 0) {
-        // If we got here the test passed
-        printf("time: %6.2lf seconds | [\033[0;32mPASSED\033[0m]\n", ut_runtime);
-        tests_passed_count++;
-    }
+        if (exit_code == 0) {
+            // If we got here the test passed
+            printf("time: %6.2lf seconds | [\033[0;32mPASSED\033[0m]\n", ut_runtime);
+            tests_passed_count++;
+        }
+    } else {
+        printf("[\033[0;33mTEST DISABLED\033[0m]");
+    }    
 }
 
 

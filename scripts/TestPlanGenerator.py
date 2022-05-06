@@ -16,7 +16,7 @@ C_HEADER_PROLOGUE = """
 
 /* AUTO GENERATED - DO NOT CHANGE THIS FILE MANUALLY */
 #include "test.h"
-
+#include <stdbool.h>
 """
 
 C_HEADER_EPILOGUE = """
@@ -42,6 +42,7 @@ def main():
     args = parser.parse_args()
     try:
         test_cases = []
+        inactive_test_cases = []
         for fPath in glob.glob(args.path):
             with open(fPath, 'r') as f:
                 file_content = f.read()
@@ -67,7 +68,11 @@ def main():
                 constructor = "NULL"
             if destructor is '':
                 destructor = "NULL"
-            c_header_string += ("DECLARE_TEST_CASE({}, {}, {}),\n".format(function_name, constructor, destructor))
+            c_header_string += ("{}, \"{}\", {}, {},\n").format(function_name, function_name, constructor, destructor))
+
+        for function_name, constructor, destructor in inactive_test_cases:
+            c_header_string += ("(NULL, \"{}\", NULL, NULL),\n".format(function_name))
+
         c_header_string += TEST_PLAN_ARRAY_EPILOGUE
 
         c_header_string += C_HEADER_EPILOGUE

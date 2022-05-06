@@ -32,6 +32,17 @@ void compare_assert_failed(const char* assert_type, const char* arg1_name, size_
         compare_assert_failed("ASSERT_NOT_EQUAL", #ACTUAL, (size_t)ACTUAL, #EXPECTED, (size_t)EXPECTED, "==", __FILE__, __LINE__, __FUNCTION__); \
     }
 
+#define ASSERT_NULL(ACTUAL, EXPECTED) \
+    if ((ACTUAL) != NULL) { \
+        compare_assert_failed("ASSERT_NULL", #ACTUAL, (size_t)ACTUAL, "NULL", (size_t)EXPECTED, "!=", __FILE__, __LINE__, __FUNCTION__); \
+    }
+
+#define ASSERT_NOT_EQUAL(ACTUAL, EXPECTED) \
+    if ((ACTUAL) == NULL) { \
+        compare_assert_failed("ASSERT_NOT_EQUAL", #ACTUAL, (size_t)ACTUAL, "NULL", (size_t)EXPECTED, "==", __FILE__, __LINE__, __FUNCTION__); \
+    }
+
+
 typedef void (*function)(void);
 
 typedef struct TestCase {
@@ -39,7 +50,6 @@ typedef struct TestCase {
 	char* function_name;
     function constructor;
     function destructor;
-    bool should_run;
 } TestCase;
 
 typedef struct TestPlan {
@@ -52,7 +62,6 @@ typedef struct TestPlan {
 #define CTOR_METHOD(FUNCTION) METHOD(FUNCTION)
 
 #define DECLARE_FUNCTION(FUNCTION) extern TEST_METHOD(FUNCTION)
-#define DECLARE_TEST_CASE(FUNCTION, CTOR, DTOR) {FUNCTION, #FUNCTION, CTOR, DTOR, true}
 
 
 #ifdef __cplusplus
