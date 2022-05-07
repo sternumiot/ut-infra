@@ -2,7 +2,7 @@
 #include <time.h>
 #include <pthread.h>
 
-#include "test.h"
+#include "libsternum_unitests.h"
  
 extern TestPlan g_test_plan;
 void execute_test(TestCase* test_case);
@@ -75,10 +75,10 @@ int main(int argc, char **argv) {
 
     size_t runnable_test_count = g_test_plan.count - disabed_test_count;
     if (tests_passed_count != runnable_test_count) {
-        printf("\n[\033[0;31mFAILED - Tests Stats: %zd/%zd (%zd are disabled) Total Runtime: %f seconds\033[0m]\n", tests_passed_count, runnable_test_count, disabed_test_count, total_ut_runtime);
+        printf("\n[\033[0;31mFAILED - Tests Stats: %zd/%zd (additional %zd are disabled) Total Runtime: %f seconds\033[0m]\n", tests_passed_count, runnable_test_count, disabed_test_count, total_ut_runtime);
         return -1;
     }
-    printf("\n[\033[0;32mPASSED - Tests Stats: %zd/%zd (%zd are disabled) Total Runtime: %f seconds\033[0m]\n", tests_passed_count, runnable_test_count, disabed_test_count, total_ut_runtime);
+    printf("\n[\033[0;32mPASSED - Tests Stats: %zd/%zd (additional %zd are disabled) Total Runtime: %f seconds\033[0m]\n", tests_passed_count, runnable_test_count, disabed_test_count, total_ut_runtime);
 
     return 0;
  }
