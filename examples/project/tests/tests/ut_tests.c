@@ -1,9 +1,10 @@
 #include "test.h"
-
+#include "dummy.h"
 
 /* Optional Methods */
 CTOR_METHOD(init) {
     // Dummy
+    dummy();
 }
 DTOR_METHOD(fini) {
     // Dummy
