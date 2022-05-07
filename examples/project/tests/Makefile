@@ -36,7 +36,7 @@ clean: $(BUILD_DIR)
 
 $(UT_PLAN_PATH): $(C_SOURCES) $(HEADER_FILES) $(UT_GENERATOR_SCRIPT) $(UT_ARCHIVE_PATH)
 	@echo Generated Test Plan
-	@python3 $(UT_GENERATOR_SCRIPT) "tests/*.c" $@ || (echo $(UT_GENERATOR_SCRIPT) "failed with code: $$?"; exit 1)
+	@python $(UT_GENERATOR_SCRIPT) "tests/*.c" $@ || (echo $(UT_GENERATOR_SCRIPT) "failed with code: $$?"; exit 1)
 
 
 $(BUILD_DIR)/$(OUTPUT_FILE): $(OBJECTS)
