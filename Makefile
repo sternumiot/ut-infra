@@ -23,7 +23,8 @@ BUILD_DIR= build
 # C Defs
 C_INCLUDES = -I$(HEADERS_DIR)
 C_DEFS =
-CFLAGS = $(C_DEFS) $(C_INCLUDES) -Wa,-aln=$(@:.o=.s) -m32 -g -O0 -Wno-shift-count-overflow -fno-stack-protector
+#-m32
+CFLAGS = $(C_DEFS) $(C_INCLUDES) -Wa,-aln=$(@:.o=.s)  -g -O0
 
 #######################################
 # Rules
