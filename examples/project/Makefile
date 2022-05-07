@@ -6,9 +6,6 @@
 print-%	: ; @echo $* = $($*)
 
 
-#######################################
-# Makefile Configuration
-#######################################
 CC = gcc
 AR = ar
 
@@ -41,6 +38,19 @@ vpath %.c $(sort $(dir $(C_SOURCES)))
 vpath %.S $(sort $(dir $(ASM_SOURCES)))
 
 
+.PHONY: all
+# all must be above the $(BUILD_DIR)/$(OUTPUT_FILE) rule, otherwise it will be ignored
+all: $(BUILD_DIR)/$(OUTPUT_FILE) tests
+
+.PHONY: clean
+clean: $(BUILD_DIR) 
+	@rm -fr $^/*
+
+.PHONY: tests
+tests: $(BUILD_DIR)/$(OUTPUT_FILE)
+	"${MAKE}" -j$(CPU_COUNT) -C $(TESTS_SRC_DIR)
+
+
 $(BUILD_DIR)/%.o: %.S $(RECOMPILATION_DEPENDENCIES)
 	@mkdir -p $(@D)
 	@$(CC) -c $(CFLAGS) $< -o $@
@@ -53,14 +63,3 @@ $(BUILD_DIR)/%.o: %.c $(RECOMPILATION_DEPENDENCIES)
 $(BUILD_DIR)/$(OUTPUT_FILE): $(OBJECTS)
 	@mkdir -p $(@D)
 	@$(AR) srv $@ $^
-
-.PHONY: all
-all: $(BUILD_DIR)/$(OUTPUT_FILE) tests
-
-.PHONY: clean
-clean: $(BUILD_DIR) 
-	@rm -fr $^/*
-
-.PHONY: tests
-tests: $(BUILD_DIR)/$(OUTPUT_FILE)
-	"${MAKE}" -j$(CPU_COUNT) -C $(TESTS_SRC_DIR)
