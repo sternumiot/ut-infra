@@ -13,14 +13,14 @@ LOCAL_TESTS_DIR = tests/
 UT_USER_CFLAGS = -g -O0 -fstack-protector-all
 UT_USER_LDFLAGS =
 
-# Machine Specific
-UT_INSTALL_PATH = ../../../
 
 
 ############################################
 # UT System Configratuion - Edit Cautiously
 ############################################
-UT_ARCHIVE_PATH=$(UT_INSTALL_PATH)/build/libsternum_unitests.a
+UT_INSTALL_PATH = /opt/ut-infra
+
+UT_ARCHIVE_PATH=$(UT_INSTALL_PATH)/build/libunitests.a
 UT_HEADER_PATH=$(UT_INSTALL_PATH)/include/
 UT_GENERATOR_SCRIPT = $(UT_INSTALL_PATH)/scripts/TestPlanGenerator.py
 UT_PLAN_PATH = $(BUILD_DIR)/test_plan.c
