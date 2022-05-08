@@ -8,7 +8,7 @@
 
 ## How to Use
 - Copy the `tests` dir under examples/project to your project and add unitests under the `tests/tests/` directory
-- Add the following `"${MAKE}" -j$(CPU_COUNT) -C $(TESTS_SRC_DIR)` to the final makefile rule
+- Add the following `"${MAKE}" -j$(CPU_COUNT) -C $(TESTS_SRC_DIR)` to the final makefile rule (please see the example project's makefile)
 ## Features
 - Test Constructor/Destructor 
 - Disable test by comment-out
