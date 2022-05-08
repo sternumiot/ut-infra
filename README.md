@@ -2,7 +2,7 @@
 > This repository contains the unitest library for all C based projects
 
 ## How to Install
-- Clone the repo at /opt
+- Clone the repo at ]`/opt`
 - Run `dep.sh`
 - Run `make`
 
