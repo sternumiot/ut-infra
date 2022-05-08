@@ -12,7 +12,7 @@ print-%	: ; @echo $* = $($*)
 CC = gcc
 AR = ar
 
-OUTPUT_FILE = libsternum_unitests.a
+OUTPUT_FILE = libunitests.a
 RECOMPILATION_DEPENDENCIES := Makefile $(HEADER_FILES)
 
 # Paths

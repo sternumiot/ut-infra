@@ -2,7 +2,7 @@
 #include <time.h>
 #include <pthread.h>
 
-#include "libsternum_unitests.h"
+#include "test.h"
  
 extern TestPlan g_test_plan;
 void execute_test(TestCase* test_case);
