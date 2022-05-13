@@ -37,6 +37,10 @@ def main():
     parser.add_argument('output', help='The name of output header file')
 
     args = parser.parse_args()
+
+    if not os.path.exists(os.path.dirname(args.output)):
+        os.makedirs(os.path.dirname(args.output))
+
     try:
         test_cases = []
         inactive_test_cases = []
