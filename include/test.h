@@ -1,7 +1,7 @@
 // v1.0
 
-#ifndef __LIBSTERNUM_UNITESTS_H__
-#define __LIBSTERNUM_UNITESTS_H__
+#ifndef __TEST_H__
+#define __TEST_H__
 
 #ifdef __cplusplus
  extern "C" {
@@ -71,4 +71,4 @@ typedef struct TestPlan {
 }
 #endif
 
-#endif /* __LIBSTERNUM_UNITESTS_H__ */
+#endif /* __TEST_H__ */
