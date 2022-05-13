@@ -20,8 +20,8 @@ UT_USER_LDFLAGS =
 ############################################
 UT_INSTALL_PATH = /opt/ut-infra
 
-UT_ARCHIVE_PATH=$(UT_INSTALL_PATH)/build/libunitests.a
-UT_HEADER_PATH=$(UT_INSTALL_PATH)/include/
+UT_ARCHIVE_PATH=$(UT_INSTALL_PATH)/build/out/libunitests.a
+UT_HEADER_PATH=$(UT_INSTALL_PATH)/build/out
 UT_GENERATOR_SCRIPT = $(UT_INSTALL_PATH)/scripts/TestPlanGenerator.py
 UT_PLAN_PATH = $(BUILD_DIR)/test_plan.c
 
