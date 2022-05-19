@@ -12,6 +12,7 @@
 
 
 void assert_failed(const char* assert_type, const char* expression, const char* file_name, int line_number, const char* function);
+void assert_failed_message(const char* assert_type, const char* expression, const char* message, const char* file_name, int line_number, const char* function);
 void compare_assert_failed(const char* assert_type, const char* arg1_name, size_t arg1, const char* arg2_name, size_t arg2, const char* expression, const char* file_name, int line_number, const char* function);
 
 #define ASSERT_TRUE(expr) \
@@ -22,6 +23,16 @@ void compare_assert_failed(const char* assert_type, const char* arg1_name, size_
 #define ASSERT_FALSE(expr) \
     if (expr) { \
         assert_failed("ASSERT_FALSE", #expr, __FILE__, __LINE__, __FUNCTION__); \
+    }
+
+#define ASSERT_TRUE_MESSAGE(expr, message) \
+    if (!(expr)) { \
+        assert_failed_message("ASSERT_TRUE", #expr, message, __FILE__, __LINE__, __FUNCTION__); \
+    }
+
+#define ASSERT_FALSE_MESSAGE(expr, message ) \
+    if (expr) { \
+        assert_failed_message("ASSERT_FALSE", #expr, message, __FILE__, __LINE__, __FUNCTION__); \
     }
 
 #define ASSERT_EQUAL(ACTUAL, EXPECTED) \

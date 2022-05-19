@@ -16,7 +16,7 @@ TEST_METHOD(ut_test1) {
 }
 
 TEST_METHOD(ut_test2, init) {
-    ASSERT_NOT_EQUAL(1, 1);
+    ASSERT_TRUE_MESSAGE(1 == 2, "That's not true");
 }
 
 TEST_METHOD(ut_test3, init, fini) {
