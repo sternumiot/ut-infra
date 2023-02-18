@@ -9,7 +9,7 @@ void execute_test(TestCase* test_case);
 
 static size_t test_index = 0;
 static size_t tests_passed_count = 0;
-static size_t disabed_test_count = 0;
+static size_t disabled_test_count = 0;
 static double ut_runtime = 0;
 static double total_ut_runtime = 0;
 
@@ -67,7 +67,7 @@ void execute_test(TestCase* test_case) {
             tests_passed_count++;
         }
     } else {
-        disabed_test_count++;
+        disabled_test_count++;
         printf("[\033[0;33mTEST DISABLED\033[0m]\n");
     }    
 }
@@ -78,12 +78,12 @@ int main(int argc, char **argv) {
         execute_test(g_test_plan.tests + i);
     }
 
-    size_t runnable_test_count = g_test_plan.count - disabed_test_count;
+    size_t runnable_test_count = g_test_plan.count - disabled_test_count;
     if (tests_passed_count != runnable_test_count) {
-        printf("\n[\033[0;31mFAILED - Tests Stats: %zd/%zd (additional %zd are disabled) Total Runtime: %f seconds\033[0m]\n", tests_passed_count, runnable_test_count, disabed_test_count, total_ut_runtime);
+        printf("\n[\033[0;31mFAILED - Tests Stats: %zd/%zd (additional %zd are disabled) Total Runtime: %f seconds\033[0m]\n", tests_passed_count, runnable_test_count, disabled_test_count, total_ut_runtime);
         return -1;
     }
-    printf("\n[\033[0;32mPASSED - Tests Stats: %zd/%zd (additional %zd are disabled) Total Runtime: %f seconds\033[0m]\n", tests_passed_count, runnable_test_count, disabed_test_count, total_ut_runtime);
+    printf("\n[\033[0;32mPASSED - Tests Stats: %zd/%zd (additional %zd are disabled) Total Runtime: %f seconds\033[0m]\n", tests_passed_count, runnable_test_count, disabled_test_count, total_ut_runtime);
 
     return 0;
  }
