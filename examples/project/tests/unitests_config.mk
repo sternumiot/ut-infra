@@ -10,7 +10,7 @@ TARGET_ARCHIVE = ../build/dummy.a
 BUILD_DIR = ../build/tests
 LOCAL_TESTS_DIR = tests/
 
-UT_USER_CFLAGS = -g -O0 -fstack-protector-all
+UT_USER_CFLAGS = -g -O0
 UT_USER_LDFLAGS =
 
 
@@ -18,7 +18,7 @@ UT_USER_LDFLAGS =
 ############################################
 # UT System Configratuion - Edit Cautiously
 ############################################
-UT_INSTALL_PATH = /opt/ut-infra
+UT_INSTALL_PATH = ../../../
 
 UT_ARCHIVE_PATH=$(UT_INSTALL_PATH)/build/out/libunitests.a
 UT_HEADER_PATH=$(UT_INSTALL_PATH)/build/out
