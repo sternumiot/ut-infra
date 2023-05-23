@@ -28,7 +28,7 @@ all : $(BUILD_DIR)/$(OUTPUT_FILE)
 
 .PHONY: clean
 ifndef BUILD_DIR
-.ABORT 	# If BUILD_DIR is not set / will be deleted
+$(error If BUILD_DIR is not set `/` will be deleted)
 endif
 clean: $(BUILD_DIR) 
 	@rm -fr $^/*
