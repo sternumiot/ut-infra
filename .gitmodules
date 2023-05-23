@@ -2,5 +2,5 @@
 	path = components/fff
 	url = git@github.com:meekrosoft/fff.git
 [submodule "makefile_base"]
-	path = makefile_base
+	path = components/makefile_base
 	url = git@github.com:sternumiot/makefile_base.git
