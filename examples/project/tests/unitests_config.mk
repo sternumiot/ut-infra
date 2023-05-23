@@ -5,7 +5,7 @@
 
 # Project Specific
 HEADERS_DIR = ../include
-TARGET_ARCHIVE = ../build/dummy.a
+TARGET_ARCHIVE = ../build/out/dummy.a
 
 BUILD_DIR = ../build/tests
 LOCAL_TESTS_DIR = tests/
