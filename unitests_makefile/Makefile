@@ -1,9 +1,9 @@
 #v1.0
 print-%	: ; @echo $* = $($*)
 
-C_INCLUDES =  $(addprefix -I, $(HEADERS_DIR))
+C_INCLUDES =  $(addprefix -I, $(HEADER_DIRS))
 C_SOURCES := $(shell find $(LOCAL_TESTS_DIR) -type f -regex ".*\.c")
-HEADER_FILES := $(shell find $(HEADERS_DIR) -type f -regex ".*\.h")
+HEADER_FILES := $(shell find $(HEADER_DIRS) -type f -regex ".*\.h")
 
 CFLAGS = $(C_INCLUDES) $(UT_CFLAGS)
 LINKER_FLAGS = $(UT_LDFLAGS) $(TARGET_ARCHIVE)

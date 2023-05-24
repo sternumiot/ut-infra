@@ -1,2 +1,2 @@
 include build_config.mk
-include ../../components/makefile_base/Makefile
+include ../../modules/makefile_base/Makefile
