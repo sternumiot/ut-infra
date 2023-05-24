@@ -1,15 +1,19 @@
 # C Unitests Library
-> This repository contains the unitest library for all C based projects
+> This repository contains the unitest library for all C based projects.
+  The repository is configured to link with a archive file and test it's functionality
 
 ## How to Install
-- Clone the repo at `/opt/ut-infra`
+- Clone the repo at `/opt/ut-infra` or inside your project as a submodule. Please note the git submodules
 - Run `dep.sh`
 - Run `make`
 
-## How to Use
-- Copy the `tests` dir under examples/project to your project and add unitests under the `tests/tests/` directory
-- To adjust to a new tested project, please only modify the first part of `unitests_config.mk`
-- Add the following `"${MAKE}" -j$(CPU_COUNT) -C $(TESTS_SRC_DIR)` to the final makefile rule (please see the example project's makefile)
+## How to Use 
+- Copy the `unitests_makefile/example_unitests_config.mk` file to your `tests` and name it `unitests_config.mk`
+- Under the `tests` dir, create a file called `Makefile` which imports your `unitests_config.mk` and `unitests_makefile/Makefile`
+  Please see example in `examples/project/tests`
+- Under the `tests` dir, create another `tests` dir. There you'll need to place your unitests. Please see example in `examples/project/tests`
+- To adjust to a new tested project, please only modify the first section of `unitests_config.mk`
+- If your project's makefile is using makefile_base repo, the tests will be invoked automatically. If not please refer to the `tests` rule in the makefile_base
 ## Features
 - Test Constructor/Destructor 
 - Disable test by comment-out
