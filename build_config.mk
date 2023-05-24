@@ -1,5 +1,6 @@
 OUTPUT_FILE = libunitests.a
-EXTERNAL_HEADERS_SRC = components/fff/fff.h $(HEADERS_DIR)/test.h
+EXTERNAL_HEADERS_SRC = components/fff/fff.h \
+$(HEADERS_DIR)/test.h \
 
 CC = gcc
 FINAL_STAGE = @ar srv $@ $^
