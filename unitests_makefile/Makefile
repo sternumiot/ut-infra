@@ -39,13 +39,18 @@ define sternum_analyse
 	#@echo "################################# Running gcov #################################"
 endef
 
+$(UT_ARCHIVE_PATH):
+		@echo Building UT Infra $@
+		${MAKE} -C $(UT_INFRA_INSTALL_PATH)
 
-$(UT_PLAN_PATH): $(C_SOURCES) $(HEADER_FILES) $(UT_GENERATOR_SCRIPT) $(UT_ARCHIVE_PATH)
+$(UT_PLAN_PATH): $(C_SOURCES) $(HEADER_FILES) $(UT_GENERATOR_SCRIPT)
 	@echo Generated Test Plan
 	@python $(UT_GENERATOR_SCRIPT) "tests/*.c" $@ || (echo $(UT_GENERATOR_SCRIPT) "failed with code: $$?"; exit 1)
 
 
-$(BUILD_DIR)/$(OUTPUT_FILE): $(OBJECTS)
+# If make gets a fatal signal while a shell is executing, it may delete the target file. Setting .PRECIOUS target prevents that
+.PRECIOUS: $(BUILD_DIR)/$(OUTPUT_FILE)
+$(BUILD_DIR)/$(OUTPUT_FILE): $(OBJECTS) $(TARGET_ARCHIVE) $(UT_ARCHIVE_PATH)
 	$(CC) $^ -o $@ $(LINKER_FLAGS)
 
 	@echo "###################################################################################"

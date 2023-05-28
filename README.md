@@ -17,6 +17,7 @@
 ## Features
 - Test Constructor/Destructor 
 - Disable test by comment-out
+- Run Valgrind and gcov(WIP) on unitests and store output
 
 ## Unitests Convention
 - Separate test file per component - name convention is `[module_name]_tests.c`

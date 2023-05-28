@@ -1,6 +1,6 @@
 OUTPUT_FILE = libunitests.a
 # Files that will be copied to the build dir
-EXTERNAL_HEADERS_SRC = modules/fff/fff.h $(HEADER_DIRS)/test.h
+EXTERNAL_HEADERS_SRC =
 
 CC = gcc
 FINAL_STAGE = @ar srv $@ $^

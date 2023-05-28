@@ -15,6 +15,8 @@ void assert_failed(const char* assert_type, const char* expression, const char* 
 void assert_failed_message(const char* assert_type, const char* expression, const char* message, const char* file_name, int line_number, const char* function);
 void compare_assert_failed(const char* assert_type, const char* arg1_name, size_t arg1, const char* arg2_name, size_t arg2, const char* expression, const char* file_name, int line_number, const char* function);
 
+#define ASSERT(expr)    ASSERT_TRUE(expr) 
+
 #define ASSERT_TRUE(expr) \
     if (!(expr)) { \
         assert_failed("ASSERT_TRUE", #expr, __FILE__, __LINE__, __FUNCTION__); \
@@ -61,6 +63,7 @@ typedef void (*function)(void);
 typedef struct TestCase {
 	function function;
 	char* function_name;
+    // char* filename;
     function constructor;
     function destructor;
 } TestCase;

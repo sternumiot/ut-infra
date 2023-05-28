@@ -20,7 +20,7 @@ UT_INFRA_INSTALL_PATH = ../../../
 # UT System Configratuion - Edit Cautiously
 ############################################
 UT_ARCHIVE_PATH=$(UT_INFRA_INSTALL_PATH)/build/out/libunitests.a
-UT_HEADER_PATH=$(UT_INFRA_INSTALL_PATH)/build/out
+UT_HEADER_PATH=$(UT_INFRA_INSTALL_PATH)/include
 UT_GENERATOR_SCRIPT = $(UT_INFRA_INSTALL_PATH)/scripts/TestPlanGenerator.py
 UT_PLAN_PATH = $(BUILD_DIR)/test_plan.c
 
