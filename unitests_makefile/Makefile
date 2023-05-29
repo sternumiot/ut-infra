@@ -36,12 +36,13 @@ define sternum_analyse
 	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes $(1) 2>&1 | tee $(2)
 	@echo "###################################################################################"
 	
-	#@echo "################################# Running gcov #################################"
+	@echo "################################# Running gcov #################################"
 endef
 
+# Always try to build UT incase it was updated
+.PHONY: $(UT_ARCHIVE_PATH)
 $(UT_ARCHIVE_PATH):
-		@echo Building UT Infra $@
-		${MAKE} -C $(UT_INFRA_INSTALL_PATH)
+		@${MAKE} -C $(UT_INFRA_INSTALL_PATH)
 
 $(UT_PLAN_PATH): $(C_SOURCES) $(HEADER_FILES) $(UT_GENERATOR_SCRIPT)
 	@echo Generated Test Plan

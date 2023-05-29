@@ -52,7 +52,7 @@ void* test_wrapper(void* arg) {
 
 void execute_test(TestCase* test_case) {
     test_index++;
-    printf("Running Test |%4zd|  %-64s | ", test_index, test_case->function_name);
+    printf("Running Test |%4zd| %-24s | %-64s | ", test_index, test_case->filename, test_case->function_name);
     fflush(stdout);
 
     if (test_case->function) {

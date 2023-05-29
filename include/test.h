@@ -61,9 +61,9 @@ void compare_assert_failed(const char* assert_type, const char* arg1_name, size_
 typedef void (*function)(void);
 
 typedef struct TestCase {
+    char* filename;
 	function function;
 	char* function_name;
-    // char* filename;
     function constructor;
     function destructor;
 } TestCase;

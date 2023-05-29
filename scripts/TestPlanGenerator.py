@@ -44,21 +44,21 @@ def main():
     try:
         test_cases = []
         inactive_test_cases = []
-        for fPath in glob.glob(args.path):
-            with open(fPath, 'r') as f:
+        for filename in glob.glob(args.path):
+            with open(filename, 'r') as f:
                 file_content = f.read()
                 commented_code = re.findall(FIND_COMMENTED_CODE_REGEX, file_content)
                 matched_unitests = re.findall(TEST_FUNCTION_DECLARATION_REGEX, file_content)
                 for function_name, constructor, destructor in matched_unitests:
                     matching = [s for s in commented_code if function_name in s[0]]
                     if len(matching) == 0:
-                        test_cases += [(function_name, constructor, destructor)]
+                        test_cases += [(os.path.basename(filename), function_name, constructor, destructor)]
                     else:
-                        inactive_test_cases += [function_name]
+                        inactive_test_cases += [(os.path.basename(filename), function_name)]
 
         c_header_string = C_HEADER_PROLOGUE
         detected_utility_functions = []
-        for (function_name, constructor, destructor) in test_cases:
+        for _, function_name, constructor, destructor in test_cases:
             for utility_func in [constructor, destructor]:
                 if utility_func != '' and utility_func != "NULL" and utility_func not in detected_utility_functions:
                     c_header_string += ("DECLARE_FUNCTION({});\n".format(utility_func))
@@ -66,15 +66,15 @@ def main():
             c_header_string += ("DECLARE_FUNCTION({});\n".format(function_name))
 
         c_header_string += "\n{}".format(TEST_CASE_ARRAY_PROLOGUE)
-        for function_name, constructor, destructor in test_cases:
+        for filename, function_name, constructor, destructor in test_cases:
             if constructor == '':
                 constructor = "NULL"
             if destructor == '':
                 destructor = "NULL"
-            c_header_string += ("   {{{}, \"{}\", {}, {}}},\n").format(function_name, function_name, constructor, destructor)
+            c_header_string += ("   {{\"{}\", {}, \"{}\", {}, {}}},\n").format(filename, function_name, function_name, constructor, destructor)
 
-        for function_name in inactive_test_cases:
-            c_header_string += ("   {{NULL, \"{}\", NULL, NULL}},\n".format(function_name))
+        for filename, function_name in inactive_test_cases:
+            c_header_string += ("   {{\"{}\", NULL, \"{}\", NULL, NULL}},\n".format(filename, function_name))
 
         c_header_string += TEST_CASE_ARRAY_EPILOGUE
         c_header_string += TEST_PLAN_DEFNITION
