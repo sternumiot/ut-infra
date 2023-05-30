@@ -22,3 +22,6 @@
 ## Unitests Convention
 - Separate test file per component - name convention is `[module_name]_tests.c`
 - Maximum test code reuse, use ctor and dtor and macros. Please see example in https://github.com/sternumiot/agent/blob/master/tests/tests/memory_protection_tests.c
+
+## Dependencies
+- GNU Make >= 4.2.1
