@@ -79,6 +79,7 @@ void execute_test(TestCase* test_case) {
 
 
 int main(int argc, char **argv) {
+    printf("Executing %zd tests\n", g_test_plan.count);
     for(size_t i = 0 ; i < g_test_plan.count ; i++) {
         execute_test(g_test_plan.tests + i);
     }
