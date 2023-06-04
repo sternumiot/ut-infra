@@ -13,18 +13,23 @@ static size_t disabled_test_count = 0;
 static double ut_runtime = 0;
 static double total_ut_runtime = 0;
 
+void assertion_error(const char* error, const char* file_name, int line_number, const char* function) {
+    printf("[\033[0;31mFAILED\033[0m] | Assertion error [%s] at %s:%d [%s]\n", error, file_name, line_number, function);
+    pthread_exit((void*)1);
+}
+
 void assert_failed(const char* assert_type, const char* expression, const char* file_name, int line_number, const char* function) {
-    printf("[\033[0;31mFAILED\033[0m] | assert [%s] failed with expression [%s] at %s:%d [%s]\n", assert_type, expression, file_name, line_number, function);
+    printf("[\033[0;31mFAILED\033[0m] | Assert [%s] failed with expression [%s] at %s:%d [%s]\n", assert_type, expression, file_name, line_number, function);
     pthread_exit((void*)1);
 }
 
 void assert_failed_message(const char* assert_type, const char* expression, const char* message, const char* file_name, int line_number, const char* function) {
-    printf("[\033[0;31mFAILED\033[0m] | assert [%s] failed with expression [%s - %s] at %s:%d [%s]\n", assert_type, expression, message, file_name, line_number, function);
+    printf("[\033[0;31mFAILED\033[0m] | Assert [%s] failed with expression [%s - %s] at %s:%d [%s]\n", assert_type, expression, message, file_name, line_number, function);
     pthread_exit((void*)1);
 }
 
 void compare_assert_failed(const char* assert_type, const char* arg1_name, size_t arg1, const char* arg2_name, size_t arg2, const char* expression, const char* file_name, int line_number, const char* function) {
-    printf("[\033[0;31mFAILED\033[0m] | assert [%s] failed with expression %s(%zx) %s %s(%zx) at %s:%d [%s]\n", assert_type, arg1_name, arg1, expression, arg2_name, arg2, file_name, line_number, function);
+    printf("[\033[0;31mFAILED\033[0m] | Assert [%s] failed with expression %s(%zx) %s %s(%zx) at %s:%d [%s]\n", assert_type, arg1_name, arg1, expression, arg2_name, arg2, file_name, line_number, function);
     pthread_exit((void*)1);
 }
 

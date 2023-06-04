@@ -11,11 +11,9 @@
 #include <stdbool.h>
 
 
-void assert_failed(const char* assert_type, const char* expression, const char* file_name, int line_number, const char* function);
-void assert_failed_message(const char* assert_type, const char* expression, const char* message, const char* file_name, int line_number, const char* function);
-void compare_assert_failed(const char* assert_type, const char* arg1_name, size_t arg1, const char* arg2_name, size_t arg2, const char* expression, const char* file_name, int line_number, const char* function);
+#define ASSERTION_ERROR(error) assertion_error(error, __FILE__, __LINE__, __FUNCTION__)
 
-#define ASSERT(expr)    ASSERT_TRUE(expr) 
+#define ASSERT(expr) ASSERT_TRUE(expr) 
 
 #define ASSERT_TRUE(expr) \
     if (!(expr)) { \
@@ -57,6 +55,11 @@ void compare_assert_failed(const char* assert_type, const char* arg1_name, size_
         compare_assert_failed("ASSERT_NOT_NULL", #ACTUAL, (size_t)ACTUAL, "NULL", (size_t)EXPECTED, "==", __FILE__, __LINE__, __FUNCTION__); \
     }
 
+
+void assertion_error(const char* error, const char* file_name, int line_number, const char* function);
+void assert_failed(const char* assert_type, const char* expression, const char* file_name, int line_number, const char* function);
+void assert_failed_message(const char* assert_type, const char* expression, const char* message, const char* file_name, int line_number, const char* function);
+void compare_assert_failed(const char* assert_type, const char* arg1_name, size_t arg1, const char* arg2_name, size_t arg2, const char* expression, const char* file_name, int line_number, const char* function);
 
 typedef void (*function)(void);
 
