@@ -44,7 +44,7 @@ def main():
     try:
         test_cases = []
         inactive_test_cases = []
-        for filename in glob.glob(args.path):
+        for filename in glob.glob(args.path + "**/*.c", recursive=True):
             with open(filename, 'r') as f:
                 file_content = f.read()
                 commented_code = re.findall(FIND_COMMENTED_CODE_REGEX, file_content)

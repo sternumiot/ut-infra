@@ -46,7 +46,7 @@ $(UT_ARCHIVE_PATH):
 
 $(UT_PLAN_PATH): $(C_SOURCES) $(HEADER_FILES) $(UT_GENERATOR_SCRIPT)
 	@echo Generated Test Plan
-	@python $(UT_GENERATOR_SCRIPT) "tests/*.c" $@ || (echo $(UT_GENERATOR_SCRIPT) "failed with code: $$?"; exit 1)
+	@python $(UT_GENERATOR_SCRIPT) "tests/" $@ || (echo $(UT_GENERATOR_SCRIPT) "failed with code: $$?"; exit 1)
 
 
 # If make gets a fatal signal while a shell is executing, it may delete the target file. Setting .PRECIOUS target prevents that
