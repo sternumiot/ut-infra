@@ -28,7 +28,7 @@ FIND_COMMENTED_CODE_REGEX = "((\/\*([^*]|[\r\n]|(\*+([^*\/]|[\r\n])))*\*+\/)|(\/
 TEST_CASE_ARRAY_PROLOGUE = "static TestCase tests[] = {\n"
 TEST_CASE_ARRAY_EPILOGUE = "};\n"
 
-TEST_PLAN_DEFNITION = "TestPlan g_test_plan = {tests, sizeof(tests)/sizeof(TestCase)};\n"
+TEST_PLAN_DEFINITION = "TestPlan g_test_plan = {tests, sizeof(tests)/sizeof(TestCase)};\n"
 
 
 def main():
@@ -77,7 +77,7 @@ def main():
             c_header_string += ("   {{\"{}\", NULL, \"{}\", NULL, NULL}},\n".format(filename, function_name))
 
         c_header_string += TEST_CASE_ARRAY_EPILOGUE
-        c_header_string += TEST_PLAN_DEFNITION
+        c_header_string += TEST_PLAN_DEFINITION
         c_header_string += C_HEADER_EPILOGUE
         if os.path.exists(args.output):
             os.remove(args.output)

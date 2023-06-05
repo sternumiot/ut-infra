@@ -17,7 +17,7 @@ UT_USER_LDFLAGS =
 UT_INFRA_INSTALL_PATH = ../../../
 
 ############################################
-# UT System Configratuion - Edit Cautiously
+# UT System Configuration - Edit Cautiously
 ############################################
 UT_ARCHIVE_PATH=$(UT_INFRA_INSTALL_PATH)/build/out/libunitests.a
 UT_HEADER_PATH=$(UT_INFRA_INSTALL_PATH)/include
