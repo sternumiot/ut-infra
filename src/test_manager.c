@@ -32,7 +32,7 @@ void assert_failed_message(const char* assert_type, const char* expression, cons
 }
 
 void compare_assert_failed(const char* assert_type, const char* arg1_name, size_t arg1, const char* arg2_name, size_t arg2, const char* expression, const char* file_name, int line_number, const char* function) {
-    printf("[\033[0;31mFAILED\033[0m] | Assert [%s] failed with expression %s(0x%zx) %s %s(0x%zx) at %s:%d [%s]\n", assert_type, arg1_name, arg1, expression, arg2_name, arg2, file_name, line_number, function);
+    printf("[\033[0;31mFAILED\033[0m] | Assert [%s] failed with expression %s(%zu) %s %s(%zu) at %s:%d [%s]\n", assert_type, arg1_name, arg1, expression, arg2_name, arg2, file_name, line_number, function);
     fflush(stdout);
     pthread_exit((void*)1);
 }
