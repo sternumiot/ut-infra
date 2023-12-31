@@ -13,6 +13,8 @@ LOCAL_TESTS_DIR = tests/
 UT_USER_CFLAGS = -g -O0
 UT_USER_LDFLAGS =
 
+UT_RUN_EXTRA_ANALYSIS=1 # Runs Valgrind, gcov, etc.
+
 # Host Specific
 UT_INFRA_INSTALL_PATH = ../../../
 

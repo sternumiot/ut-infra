@@ -8,6 +8,9 @@ HEADER_FILES := $(shell find $(HEADER_DIRS) -type f -regex ".*\.h")
 CFLAGS = $(C_INCLUDES) $(UT_CFLAGS)
 LINKER_FLAGS = $(UT_LDFLAGS) $(TARGET_ARCHIVE)
 
+ifndef UT_RUN_EXTRA_ANALYSIS
+UT_RUN_EXTRA_ANALYSIS=1
+endif
 
 # list of objects
 OBJECTS = $(addprefix $(BUILD_DIR)/,$(notdir $(C_SOURCES:.c=.o))) $(UT_PLAN_PATH:.c=.o)
@@ -59,7 +62,9 @@ $(BUILD_DIR)/$(OUTPUT_FILE): $(OBJECTS) $(TARGET_ARCHIVE) $(UT_ARCHIVE_PATH)
 	@echo "###################################################################################"
 	@echo ""
 	@$(BUILD_DIR)/$(OUTPUT_FILE) 2>&1 | tee $(UT_OUTPUT)
+ifeq ($(UT_RUN_EXTRA_ANALYSIS), 1)
 	$(call sternum_analyse, $(BUILD_DIR)/$(OUTPUT_FILE), $(UT_VALGRIND_OUTPUT))
+endif
 	@echo ""
 	@echo "###################################################################################"
 
