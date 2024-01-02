@@ -45,7 +45,7 @@ endef
 # Always try to build UT incase it was updated
 .PHONY: $(UT_ARCHIVE_PATH)
 $(UT_ARCHIVE_PATH):
-		@${MAKE} -C $(UT_INFRA_INSTALL_PATH)
+		@${MAKE} -C $(UT_INFRA_INSTALL_PATH) TOOLCHAIN=$(TOOLCHAIN)
 
 $(UT_PLAN_PATH): $(C_SOURCES) $(HEADER_FILES) $(UT_GENERATOR_SCRIPT)
 	@echo Generated Test Plan

@@ -6,6 +6,7 @@
 - Clone the repo at `/opt/ut-infra` or inside your project as a submodule. Please note the git submodules
 - Run `dep.sh`
 - Run `make`
+- Define `TOOLCHAIN` to select the compiler ot use
 
 ## How to Use 
 - Copy the `unitests_makefile/example_unitests_config.mk` file to your `tests` and name it `unitests_config.mk`

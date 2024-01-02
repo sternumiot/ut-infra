@@ -2,8 +2,15 @@ OUTPUT_FILE = libunitests.a
 # Files that will be copied to the build dir
 EXTERNAL_HEADERS_SRC =
 
-CC = gcc
-FINAL_STAGE = @ar srv $@ $^
+ifdef TOOLCHAIN
+CC=$(TOOLCHAIN)-gcc
+AR=$(TOOLCHAIN)-ar
+else
+CC=gcc
+AR=ar
+endif
+
+FINAL_STAGE = @$(AR) srv $@ $^
 
 TESTS_SRC_DIR = tests
 SRC_DIR = src
