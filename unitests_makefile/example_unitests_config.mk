@@ -33,4 +33,10 @@ UT_CFLAGS=-I$(UT_HEADER_PATH) $(UT_USER_CFLAGS)
 UT_LDFLAGS= $(UT_ARCHIVE_PATH) $(UT_USER_LDFLAGS) -lpthread 
 
 OUTPUT_FILE = test_executable
-CC = gcc
+
+# Define TOOLCHAIN to make sure your unitests will be compiled exactly as your target archive
+ifdef TOOLCHAIN
+CC=$(TOOLCHAIN)-gcc
+else
+CC=gcc
+endif
