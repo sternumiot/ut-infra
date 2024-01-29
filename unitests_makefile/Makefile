@@ -57,6 +57,8 @@ $(UT_PLAN_PATH): $(C_SOURCES) $(HEADER_FILES) $(UT_GENERATOR_SCRIPT)
 $(BUILD_DIR)/$(OUTPUT_FILE): $(OBJECTS) $(TARGET_ARCHIVE) $(UT_ARCHIVE_PATH)
 	$(CC) $^ -o $@ $(LINKER_FLAGS)
 
+.PHONY: run_tests
+run_tests: $(BUILD_DIR)/$(OUTPUT_FILE)
 	@echo "###################################################################################"
 	@echo "################################## Running tests ##################################"
 	@echo "###################################################################################"
@@ -67,5 +69,3 @@ ifeq ($(UT_RUN_EXTRA_ANALYSIS), 1)
 endif
 	@echo ""
 	@echo "###################################################################################"
-
-
