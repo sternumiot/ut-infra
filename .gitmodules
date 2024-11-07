@@ -1,6 +1,3 @@
-[submodule "components/fff"]
-	path = modules/fff
-	url = git@github.com:meekrosoft/fff.git
 [submodule "makefile_base"]
 	path = modules/makefile_base
 	url = git@github.com:sternumiot/makefile_base.git
