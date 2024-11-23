@@ -22,8 +22,8 @@ C_HEADER_EPILOGUE = """
 #endif
 """
 
-TEST_FUNCTION_DECLARATION_REGEX = "TEST_METHOD\((?P<function_name>\w*)[, ]*(?P<constructor>\w*)[, ]*(?P<destructor>\w*).*\)"
-FIND_COMMENTED_CODE_REGEX = "((\/\*([^*]|[\r\n]|(\*+([^*\/]|[\r\n])))*\*+\/)|(\/\/.*))"
+TEST_FUNCTION_DECLARATION_REGEX = r"TEST_METHOD\((?P<function_name>\w*)[, ]*(?P<constructor>\w*)[, ]*(?P<destructor>\w*).*\)"
+FIND_COMMENTED_CODE_REGEX = r"((\/\*([^*]|[\r\n]|(\*+([^*\/]|[\r\n])))*\*+\/)|(\/\/.*))"
 
 TEST_CASE_ARRAY_PROLOGUE = "static TestCase tests[] = {\n"
 TEST_CASE_ARRAY_EPILOGUE = "};\n"
